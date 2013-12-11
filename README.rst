@@ -18,7 +18,7 @@ Installation
     $ virtualenv env
 
     $ # Clone zing repository
-    $ git clone git@github.com:brooklynpacket:zing.git
+    $ git clone git@github.com:EnTeQuAk:zing.git
 
     $ # Activate Environment and install
     $ source env/bin/activate
