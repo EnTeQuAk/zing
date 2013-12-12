@@ -30,6 +30,7 @@ class TestController(unittest.TestCase):
         ctrl = Controller()
         self.assertEqual(ctrl._queue_cache.keys(), ['test-events'])
 
+    @mock_sqs
     def test_normalize_queue_name(self):
         self.assertEqual(
             Controller().normalize_queue_name('prefix.name'),
