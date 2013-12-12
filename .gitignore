@@ -1,6 +1,7 @@
 *~
 .DS_Store
 .coverage
+.tox
 *.pyc
 .*.swp
 MANIFEST
