@@ -1,0 +1,8 @@
+*~
+.DS_Store
+.coverage
+*.pyc
+.*.swp
+MANIFEST
+dist/
+zing.egg-info/
