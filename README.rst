@@ -5,7 +5,7 @@ Zing
 .. image:: https://secure.travis-ci.org/EnTeQuAk/zing.png?branch=master
    :target: http://travis-ci.org/EnTeQuAk/zing
 
-.. image:: https://coveralls.io/repos/ENnTeQuAk/zing/badge.png?branch=master
+.. image:: https://coveralls.io/repos/EnTeQuAk/zing/badge.png?branch=master
    :target: https://coveralls.io/r/EnTeQuAk/zing?branch=master
 
 Zing is a wrapper around SQS and Django to support asyncronous tasks. It is currently used for dispatching database writes.
