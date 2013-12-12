@@ -5,7 +5,7 @@ install:
 - pip install -e .
 - pip install -e .[tests]
 script:
-- coverage run --branch --source=zing python setup.py test
+- coverage run --branch --source=zing setup.py test
 - coverage report --omit=tests/*
 env:
   global:
