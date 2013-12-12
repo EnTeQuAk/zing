@@ -1,0 +1,15 @@
+language: python
+python:
+- '2.7'
+install:
+- pip install -e .
+- pip install -e .[tests]
+script:
+- coverage run --branch --source=zing `which django-admin.py` test appconf
+- coverage report --omit=appconf/test*
+env:
+  global:
+  - PIP_DOWNLOAD_CACHE=".pip_download_cache"
+  - PIP_USE_MIRRORS=true
+AWS_ACCESS_KEY=AKIAI5H54VFE4AERDMYQ:
+  secure: iTQ89IpKIgklpCxjOrUJcp1E1RrnvQoyeouWWlsoHvE+2Cl40qG/wPEJelVXT44u6q5YPff/kzPaiwf0ekrXV85TOYSXbKAle5Noq4E4GT3U2a+e+rA+x83n7/CJ6Nk4s+YZxN2i7eopzwKorAjj+NO/+MiwPfEgilP6co4CUTc=

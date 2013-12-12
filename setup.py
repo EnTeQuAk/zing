@@ -19,7 +19,6 @@ test_requires = [
     'pytest',
     'pytest-cov>=1.4',
     'pytest-django',
-    'pytest-timeout',
     'python-coveralls',
 ]
 
