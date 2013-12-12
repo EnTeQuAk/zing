@@ -11,4 +11,4 @@ env:
   global:
   - PIP_DOWNLOAD_CACHE=".pip_download_cache"
   - PIP_USE_MIRRORS=true
-  secure: iTQ89IpKIgklpCxjOrUJcp1E1RrnvQoyeouWWlsoHvE+2Cl40qG/wPEJelVXT44u6q5YPff/kzPaiwf0ekrXV85TOYSXbKAle5Noq4E4GT3U2a+e+rA+x83n7/CJ6Nk4s+YZxN2i7eopzwKorAjj+NO/+MiwPfEgilP6co4CUTc=
+#  secure: iTQ89IpKIgklpCxjOrUJcp1E1RrnvQoyeouWWlsoHvE+2Cl40qG/wPEJelVXT44u6q5YPff/kzPaiwf0ekrXV85TOYSXbKAle5Noq4E4GT3U2a+e+rA+x83n7/CJ6Nk4s+YZxN2i7eopzwKorAjj+NO/+MiwPfEgilP6co4CUTc=
