@@ -23,16 +23,16 @@ import boto.sqs
 from boto.vpc import VPCConnection
 from boto.sqs.connection import SQSConnection
 
+from django.conf import settings
 
 from zing.message import EventMessage, make_message
+from zing.conf import settings
 
 # dots are replaced by dash, all other punctuation
 # replaced by underscore.
 CHARS_REPLACE_TABLE = dict((ord(c), 0x5f)
                            for c in string.punctuation if c not in '-_.')
 CHARS_REPLACE_TABLE[0x2e] = 0x2d  # '.' -> '-'
-
-DEFAULT_WAIT_TIME_SECONDS = 20
 
 
 def get_sqs_region(region_name):
@@ -45,17 +45,13 @@ def get_sqs_region(region_name):
 class Controller(object):
     """Controller to export various functionalities regarding AWS in general."""
 
-    def __init__(self, credentials=None, environment_config=None,
-                 region='us-east-1', wait_time_seconds=None):
+    def __init__(self):
+        credentials = {
+            'aws_access_key_id': settings.ZING_AWS_ACCESS_KEY_ID,
+            'aws_secret_access_key': settings.ZING_AWS_SECRET_ACCESS_KEY
+        }
 
-        self.environment_config = environment_config
-        self.credentials = credentials
-
-        if credentials is None:
-            credentials = {
-                'aws_access_key_id': None,
-                'aws_secret_access_key': None
-            }
+        region = settings.ZING_AWS_REGION
 
         self.sqs = SQSConnection(region=get_sqs_region(region), **credentials)
         self.vpc = VPCConnection(**credentials)
@@ -68,7 +64,7 @@ class Controller(object):
 
         # Time to be used for keep-alive queue polling. This effectively
         # reduces the amount of poll requests, cost and improves efficiency.
-        self.wait_time_seconds = wait_time_seconds or DEFAULT_WAIT_TIME_SECONDS
+        self.wait_time_seconds = settings.ZING_SQS_WAIT_TIME_SECONDS
 
     def normalize_queue_name(self, name, prefix=None, table=CHARS_REPLACE_TABLE):
         """Normalize an queue name into a legal SQS queue name.

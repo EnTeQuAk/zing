@@ -37,7 +37,7 @@ class TestWorker(unittest.TestCase):
 
         self.assertEqual(len(sqs.get_all_queues()), 0)
 
-        with spawn_worker(Worker(None, None)):
+        with spawn_worker(Worker()):
             # Worker is empty, not registering any queues
             self.assertEqual(len(sqs.get_all_queues()), 0)
 
@@ -47,7 +47,7 @@ class TestWorker(unittest.TestCase):
 
         self.assertEqual(len(sqs.get_all_queues()), 0)
 
-        worker = Worker(None, None)
+        worker = Worker()
         worker.ctrl.wait_time_seconds = 0.1
         worker.idle_time_seconds = 0.1
         worker.add_consumer('test_events', dummy_consumer)
@@ -74,7 +74,7 @@ class TestWorker(unittest.TestCase):
 
         self.assertEqual(queue.count(), 1)
 
-        worker = Worker(None, None)
+        worker = Worker()
         worker.ctrl.wait_time_seconds = 0.1
         worker.idle_time_seconds = 0.1
         worker.add_consumer('test_events', dummy_consumer)

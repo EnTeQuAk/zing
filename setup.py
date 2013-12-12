@@ -1,12 +1,40 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
 from setuptools import setup
+from setuptools.command.test import test as TestCommand
 
-# TODO: this is stupid, don't read here :-/
-readme = open('README.rst').read()
-history = open('HISTORY.rst').read().replace('.. :changelog:', '')
+with open('README.rst') as fobj:
+    readme = fobj.read()
 
-test_requires = ['moto', 'nose']
+with open('HISTORY.rst') as fobj:
+    history = fobj.read()
+    history.replace('.. :changelog:', '')
+
+
+test_requires = [
+    'moto',
+    'nose',
+    'coverage',
+    'pytest',
+    'pytest-cov>=1.4',
+    'pytest-django',
+    'pytest-timeout',
+    'python-coveralls',
+]
+
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = ['tests']
+        self.test_suite = True
+
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
 
 setup(
     name='zing',
@@ -23,10 +51,12 @@ setup(
     include_package_data=True,
     install_requires=[
         'Django>=1.6,<1.7',
+        'django-appconf',
         'gevent>=1.0',
         'boto>=2.19.0',
     ],
     tests_require=test_requires,
+    cmdclass={'test': PyTest},
     extras_require={
         'docs': ['sphinx'],
         'tox': ['tox'],
@@ -45,5 +75,4 @@ setup(
         "Programming Language :: Python :: 2",
         'Programming Language :: Python :: 2.7',
     ],
-    test_suite='nose.collector',
 )

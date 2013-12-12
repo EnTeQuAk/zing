@@ -23,8 +23,8 @@ class Worker(object):
     # to reduce load and cost.
     idle_time_seconds = 5
 
-    def __init__(self, config, credentials, **controller_config):
-        self.ctrl = Controller(credentials, config, **controller_config)
+    def __init__(self):
+        self.ctrl = Controller()
 
         # We assume that we have less than 1000 queues here.
         # TODO: ``group`` might make more sense, does it?
