@@ -5,8 +5,8 @@ install:
 - pip install -e .
 - pip install -e .[tests]
 script:
-- coverage run --branch --source=zing `which django-admin.py` test appconf
-- coverage report --omit=appconf/test*
+- coverage run --branch --source=zing python setup.py test
+- coverage report --omit=tests/*
 env:
   global:
   - PIP_DOWNLOAD_CACHE=".pip_download_cache"
