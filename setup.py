@@ -22,6 +22,7 @@ setup(
     package_dir={'zing': 'zing'},
     include_package_data=True,
     install_requires=[
+        'Django>=1.6,<1.7',
         'gevent>=1.0',
         'boto>=2.19.0',
     ],
@@ -37,7 +38,6 @@ setup(
         ]
     },
     zip_safe=False,
-    keywords='zing',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
